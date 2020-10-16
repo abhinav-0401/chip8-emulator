@@ -38,7 +38,6 @@ class Chip8 {
 
         this.paused = false;
         this.speed = 10;
-
     }
 
     loadSpritsIntoMemory() {

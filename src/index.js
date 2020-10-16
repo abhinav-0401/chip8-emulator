@@ -7,7 +7,6 @@ import './style.css';
 const FPS = 60;
 let loop, fpsInterval, startTime, now, then, elapsed;
 
-
 const romSelector = document.getElementById('roms');
 romSelector.addEventListener('change', () => {
     const rom = romSelector.options[romSelector.selectedIndex].value;
@@ -25,12 +24,12 @@ reloadButton.addEventListener('click', () => {
 
 const loadingText = document.getElementById('loading-text');
 
-
 function loadROM(romName) {
     const monitor = new Monitor(document.getElementById('screen'), 20);
     const keyboard = new Keyboard();
     const speaker = new Speaker();
     const chip8 = new Chip8(monitor, keyboard, speaker);
+    window.cancelAnimationFrame(loop);
 
     function step() {
         now = Date.now();
@@ -43,13 +42,9 @@ function loadROM(romName) {
         loop = requestAnimationFrame(step);
         
     }
-    
-
-
     const url = `/rom/${romName}`;
     reloadButton.disabled = true;
     loadingText.innerHTML = 'Loading ' + romName + ' ... ';
-
 
     fetch(url).then(res => res.arrayBuffer())
             .then(buffer => {
