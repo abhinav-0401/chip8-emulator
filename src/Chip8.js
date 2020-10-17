@@ -15,9 +15,9 @@ class Chip8 {
         // 16-bit Program Counter
         this.pc = 0x200;
 
-        // Stack
+        // Stack - 16 levels
         this.stack = [];
-
+ 
         // 8-bit Stack pointer
         this.sp = 0;
 
